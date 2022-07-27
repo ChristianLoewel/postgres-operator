@@ -15,6 +15,7 @@ rules:
   resources:
   - postgresqls
   - postgresqls/status
+  - postgresqls/finalizers
   - operatorconfigurations
   verbs:
   - create
