@@ -45,6 +45,10 @@ func StringToPointer(str string) *string {
 	return &str
 }
 
+func BoolToPointer(value bool) *bool {
+	return &value
+}
+
 // KubernetesClient describes getters for Kubernetes objects
 type KubernetesClient struct {
 	corev1.SecretsGetter

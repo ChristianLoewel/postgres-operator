@@ -188,6 +188,20 @@ func (c *Cluster) GetReference() *v1.ObjectReference {
 	return ref
 }
 
+func (c *Cluster) GetOwnerReferences() []metav1.OwnerReference {
+	ref := c.GetReference()
+	ownRef := metav1.OwnerReference{
+		APIVersion:         ref.APIVersion,
+		Kind:               ref.Kind,
+		Name:               ref.Name,
+		UID:                ref.UID,
+		Controller:         k8sutil.BoolToPointer(true),
+		BlockOwnerDeletion: k8sutil.BoolToPointer(true),
+	}
+	refs := []metav1.OwnerReference{ownRef}
+	return refs
+}
+
 func (c *Cluster) isNewCluster() bool {
 	return c.Status.Creating()
 }
